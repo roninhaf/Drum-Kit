@@ -1,3 +1,5 @@
+"use strict";
+
 function playSoundAndAnim(a) {
     
     const audio = document.querySelector(`audio[data-key="${a.keyCode}"]`);
