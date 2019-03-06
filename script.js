@@ -1,23 +1,22 @@
 "use strict";
 
-function playSoundAndAnim(a) {
+function playSoundAndAnim(event) {
     
-    const audio = document.querySelector(`audio[data-key="${a.keyCode}"]`);
+    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
     if(!audio){return;};
 
-    const key = document.querySelector(`div[data-key="${a.keyCode}"]`).classList.add('playing');
+    const key = document.querySelector(`div[data-key="${event.keyCode}"]`).classList.add('playing');
     
     audio.currentTime = 0;
     audio.play();
 }
 
-function removeAnim(a) {
+function removeAnim(event) {
     
-    if(a.propertyName!=='transform') {return};
-    a.target.classList.remove('playing');
+    if(event.propertyName!=='transform') {return};
+    event.target.classList.remove('playing');
 }
 
-console.log(Array.from(document.querySelectorAll('.key')));
-const keys = Array.from(document.querySelectorAll('.key')).forEach(a=>a.addEventListener('transitionend',removeAnim));
+const keys = Array.from(document.querySelectorAll('.key')).forEach(key => key.addEventListener('transitionend',removeAnim));
 
 window.addEventListener('keydown',playSoundAndAnim);
